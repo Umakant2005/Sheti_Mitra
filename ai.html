@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant - ShetiMitta</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50' font-size='50'>🌾</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo" onclick="navigateTo('index.html')">
+                <i class="fas fa-leaf"></i> ShetiMitta
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" data-page="home">Home</a></li>
+                <li><a href="#myProducts" data-page="products">My Products</a></li>
+                <li><a href="index.html#market">Directory</a></li>
+                <li><a href="diary.html" data-page="diary">Diary</a></li>
+                <li><a href="ai.html" class="active" data-page="ai">AI Assistant</a></li>
+                <li><a href="about.html" data-page="about">About</a></li>
+                <li class="nav-right">
+                    <div class="notification-icon" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                </li>
+                <li class="nav-right">
+                    <div class="auth-buttons" id="authSection">
+                        <a href="login.html" class="btn-login">Login</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- AI Hero -->
+    <section class="ai-hero">
+        <div class="container">
+            <h1>AI Assistant</h1>
+            <p>Get instant answers to your farming questions</p>
+        </div>
+    </section>
+
+    <!-- AI Chat Section -->
+    <section class="ai-main">
+        <div class="container">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <i class="fas fa-robot"></i>
+                    <h3>ShetiMitta AI Helper</h3>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message ai">
+                        <div class="message-bubble">
+                            <p>Hello! I'm your AI farming assistant. How can I help you today?</p>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" id="chatInput" placeholder="Type your question here..." onkeypress="handleChatKeyPress(event)">
+                    <button onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-leaf"></i> ShetiMitta</h3>
+                    <p>Your trusted agricultural marketplace connecting farmers directly to consumers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                        <li><a href="ai.html">AI Assistant</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Farm Road</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> support@shetimitta.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ShetiMitta. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // AI Chat functions
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                // Add user message
+                addMessage(message, 'user');
+                input.value = '';
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    const response = getAIResponse(message);
+                    addMessage(response, 'ai');
+                }, 1000);
+            }
+        }
+
+        function addMessage(text, type) {
+            const messages = document.getElementById('chatMessages');
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerHTML = `
+                <div class="message-bubble">
+                    <p>${text}</p>
+                    <div class="message-time">${time}</div>
+                </div>
+            `;
+            
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function getAIResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            // Simple keyword-based responses
+            if (lowerMessage.includes('tomato') || lowerMessage.includes('crop')) {
+                return "For tomato cultivation, maintain temperature between 20-25°C. Water regularly and ensure proper drainage. Use organic fertilizers for best results.";
+            } else if (lowerMessage.includes('water') || lowerMessage.includes('irrigation')) {
+                return "For irrigation, water your crops early morning or late evening to minimize evaporation. Drip irrigation is recommended for water efficiency.";
+            } else if (lowerMessage.includes('fertilizer') || lowerMessage.includes('organic')) {
+                return "Organic fertilizers like compost, vermicompost, and cow dung are excellent for soil health. Apply NPK fertilizers based on soil test results.";
+            } else if (lowerMessage.includes('pest') || lowerMessage.includes('disease')) {
+                return "For pest control, use neem oil spray or biological pest control. Rotate crops to prevent disease buildup. Consult local agriculture extension for specific issues.";
+            } else if (lowerMessage.includes('weather') || lowerMessage.includes('season')) {
+                return "Check local weather forecasts before planning farm activities. In India, kharif season (June-Oct) is suitable for most crops.";
+            } else if (lowerMessage.includes('price') || lowerMessage.includes('market')) {
+                return "Check mandi prices on eNAM platform or local agricultural market. Prices vary by season and region.";
+            } else if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                return "Hello! How can I help you with your farming today? You can ask about crops, irrigation, fertilizers, pest control, or market prices.";
+            } else {
+                return "Thank you for your question! For detailed information about farming practices, please consult your local agricultural extension officer or visit the nearest Krishi Vigyan Kendra.";
+            }
+        }
+    </script>
+</body>
+</html>

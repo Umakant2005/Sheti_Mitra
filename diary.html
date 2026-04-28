@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diary - ShetiMitta</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50' font-size='50'>🌾</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo" onclick="navigateTo('index.html')">
+                <i class="fas fa-leaf"></i> ShetiMitta
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" data-page="home">Home</a></li>
+                <li><a href="#myProducts" data-page="products">My Products</a></li>
+                <li><a href="index.html#market">Directory</a></li>
+                <li><a href="diary.html" class="active" data-page="diary">Diary</a></li>
+                <li><a href="ai.html" data-page="ai">AI Assistant</a></li>
+                <li><a href="about.html" data-page="about">About</a></li>
+                <li class="nav-right">
+                    <div class="notification-icon" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                </li>
+                <li class="nav-right">
+                    <div class="auth-buttons" id="authSection">
+                        <a href="login.html" class="btn-login">Login</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Diary Hero -->
+    <section class="diary-hero">
+        <div class="container">
+            <h1>Farm Diary</h1>
+            <p>Track your daily farming activities, weather conditions, and notes</p>
+        </div>
+    </section>
+
+    <!-- Diary Section -->
+    <section class="diary-main">
+        <div class="container">
+            <div class="diary-layout">
+                <!-- Add Note Form -->
+                <div class="diary-form-container">
+                    <h3><i class="fas fa-plus-circle"></i> Add New Note</h3>
+                    <form id="diaryForm" onsubmit="addDiaryNote(event)">
+                        <div class="form-group">
+                            <label for="noteDate">Date</label>
+                            <input type="date" id="noteDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="noteTitle">Title</label>
+                            <input type="text" id="noteTitle" placeholder="Enter note title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="noteContent">Note</label>
+                            <textarea id="noteContent" placeholder="Write your farming notes here..." rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="noteCategory">Category</label>
+                            <select id="noteCategory">
+                                <option value="General">General</option>
+                                <option value="Weather">Weather</option>
+                                <option value="Crop">Crop Update</option>
+                                <option value="Equipment">Equipment</option>
+                                <option value="Finance">Finance</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> Save Note
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Notes List -->
+                <div class="diary-notes-container">
+                    <div class="diary-header">
+                        <h3>Your Notes</h3>
+                        <div class="diary-filter">
+                            <select id="filterCategory" onchange="filterNotes()">
+                                <option value="All">All Categories</option>
+                                <option value="General">General</option>
+                                <option value="Weather">Weather</option>
+                                <option value="Crop">Crop Update</option>
+                                <option value="Equipment">Equipment</option>
+                                <option value="Finance">Finance</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="notes-list" id="notesList">
+                        <!-- Notes will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-leaf"></i> ShetiMitta</h3>
+                    <p>Your trusted agricultural marketplace connecting farmers directly to consumers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                        <li><a href="ai.html">AI Assistant</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Farm Road</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> support@shetimitta.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ShetiMitta. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Diary specific functions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set today's date
+            const dateInput = document.getElementById('noteDate');
+            if (dateInput) {
+                dateInput.value = new Date().toISOString().split('T')[0];
+            }
+            
+            // Load existing notes
+            loadDiaryNotes();
+        });
+
+        function addDiaryNote(event) {
+            event.preventDefault();
+            
+            const note = {
+                id: Date.now(),
+                date: document.getElementById('noteDate').value,
+                title: document.getElementById('noteTitle').value,
+                content: document.getElementById('noteContent').value,
+                category: document.getElementById('noteCategory').value
+            };
+            
+            // Save to localStorage
+            let notes = JSON.parse(localStorage.getItem('shetiDiaryNotes')) || [];
+            notes.unshift(note);
+            localStorage.setItem('shetiDiaryNotes', JSON.stringify(notes));
+            
+            // Display the note
+            displayDiaryNote(note);
+            
+            // Reset form
+            document.getElementById('diaryForm').reset();
+            document.getElementById('noteDate').value = new Date().toISOString().split('T')[0];
+            
+            alert('Note saved successfully!');
+        }
+
+        function displayDiaryNote(note) {
+            const list = document.getElementById('notesList');
+            if (!list) return;
+            
+            const card = document.createElement('div');
+            card.className = 'note-card';
+            card.innerHTML = `
+                <div class="note-header">
+                    <span class="note-category">${note.category}</span>
+                    <span class="note-date">${formatDate(note.date)}</span>
+                </div>
+                <h4>${note.title}</h4>
+                <p>${note.content}</p>
+                <button class="btn-delete" onclick="deleteNote(${note.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
+            `;
+            
+            list.insertBefore(card, list.firstChild);
+        }
+
+        function loadDiaryNotes() {
+            const notes = JSON.parse(localStorage.getItem('shetiDiaryNotes')) || [];
+            const list = document.getElementById('notesList');
+            
+            if (list) {
+                list.innerHTML = '';
+                if (notes.length === 0) {
+                    list.innerHTML = '<p class="no-notes">No notes yet. Add your first note above!</p>';
+                } else {
+                    notes.forEach(note => displayDiaryNote(note));
+                }
+            }
+        }
+
+        function filterNotes() {
+            const category = document.getElementById('filterCategory').value;
+            const notes = JSON.parse(localStorage.getItem('shetiDiaryNotes')) || [];
+            const list = document.getElementById('notesList');
+            
+            if (list) {
+                list.innerHTML = '';
+                const filtered = category === 'All' 
+                    ? notes 
+                    : notes.filter(n => n.category === category);
+                
+                if (filtered.length === 0) {
+                    list.innerHTML = '<p class="no-notes">No notes found in this category.</p>';
+                } else {
+                    filtered.forEach(note => displayDiaryNote(note));
+                }
+            }
+        }
+
+        function deleteNote(id) {
+            if (confirm('Are you sure you want to delete this note?')) {
+                let notes = JSON.parse(localStorage.getItem('shetiDiaryNotes')) || [];
+                notes = notes.filter(n => n.id !== id);
+                localStorage.setItem('shetiDiaryNotes', JSON.stringify(notes));
+                loadDiaryNotes();
+            }
+        }
+    </script>
+</body>
+</html>
+
+    <div class="container">
+        <section class="diary-section">
+            <h1>Daily Diary - Farm Records Tracking</h1>
+            
+            <div class="diary-input-container">
+                <h2>Add New Entry</h2>
+                <div class="form-group">
+                    <label for="entryDate">Date:</label>
+                    <input type="date" id="entryDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryWeather">Weather:</label>
+                    <select id="entryWeather">
+                        <option>--Select Weather--</option>
+                        <option>Sunny</option>
+                        <option>Rainy</option>
+                        <option>Cloudy</option>
+                        <option>Windy</option>
+                        <option>Partly Cloudy</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryTemperature">Temperature (°C):</label>
+                    <input type="number" id="entryTemperature" placeholder="Enter temperature" step="0.1">
+                </div>
+
+                <div class="form-group">
+                    <label for="entryActivity">Farm Activity:</label>
+                    <input type="text" id="entryActivity" placeholder="e.g., Watering, Weeding, Planting">
+                </div>
+
+                <div class="form-group">
+                    <label for="entryNotes">Notes:</label>
+                    <textarea id="entryNotes" placeholder="Add detailed notes about today's farm activities..." rows="5"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryCrop">Crop Type:</label>
+                    <input type="text" id="entryCrop" placeholder="e.g., Wheat, Rice, Corn">
+                </div>
+
+                <div class="form-group">
+                    <label for="entryCropHealth">Crop Health:</label>
+                    <select id="entryCropHealth">
+                        <option>--Select Health Status--</option>
+                        <option>Excellent</option>
+                        <option>Good</option>
+                        <option>Fair</option>
+                        <option>Poor</option>
+                    </select>
+                </div>
+
+                <button class="btn-add" onclick="addDiaryEntry()">Add Entry</button>
+            </div>
+
+            <div class="diary-filter-container">
+                <h2>Filter Entries</h2>
+                <div class="filter-group">
+                    <label for="filterDate">Filter by Date:</label>
+                    <input type="date" id="filterDate">
+                    <button class="btn-filter" onclick="filterByDate()">Filter</button>
+                    <button class="btn-filter btn-clear" onclick="clearFilter()">Clear</button>
+                </div>
+            </div>
+
+            <div class="diary-entries-container">
+                <h2>Your Diary Entries</h2>
+                <div id="diaryEntries" class="entries-list">
+                    <p class="no-entries">No entries yet. Add your first entry above!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🌾 Sheti Mitra</h4>
+                    <p>Empowering farmers with smart agricultural solutions</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <p>Facebook | Twitter | Instagram</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sheti Mitra. All rights reserved. | Revolutionizing Agriculture with Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

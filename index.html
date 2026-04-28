@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShetiMitta - Smart Agriculture Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50' font-size='50'>🌾</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo" onclick="navigateTo('index.html')">
+                <i class="fas fa-leaf"></i> ShetiMitta
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active" data-page="home">Home</a></li>
+                <li><a href="#myProducts" data-page="products">My Products</a></li>
+                <li><a href="#market">Market</a></li>
+                <li><a href="diary.html" data-page="diary">Diary</a></li>
+                <li><a href="ai.html" data-page="ai">AI Assistant</a></li>
+                <li><a href="about.html" data-page="about">About</a></li>
+                <li class="nav-right">
+                    <div class="notification-icon" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                </li>
+                <li class="nav-right">
+                    <div class="auth-buttons" id="authSection">
+                        <a href="login.html" class="btn-login">Login</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeLoginModal()">&times;</span>
+            <h2>Welcome Back</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <p class="register-link">Don't have an account? <a href="#">Register</a></p>
+        </div>
+    </div>
+
+    <!-- Profile Dropdown -->
+    <div class="profile-dropdown" id="profileDropdown">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="profile-info">
+                <h4>Farmer John</h4>
+                <p>john@farm.com</p>
+            </div>
+        </div>
+        <div class="profile-menu">
+            <a href="#"><i class="fas fa-user-circle"></i> Profile</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a href="#" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to ShetiMitta</h1>
+            <p>Your complete agricultural marketplace for fresh produce, smart farming solutions, and direct farmer-to-consumer connections.</p>
+        </div>
+        <div class="hero-image">
+            <div class="basket-container">
+                <div class="vegetable tomato"></div>
+                <div class="vegetable carrot"></div>
+                <div class="vegetable broccoli"></div>
+                <div class="vegetable corn"></div>
+                <div class="vegetable eggplant"></div>
+                <div class="vegetable pepper"></div>
+            </div>
+        </div>
+        <div class="hero-background"></div>
+    </section>
+
+    <!-- Market Section -->
+    <section class="market-section" id="market">
+        <div class="container">
+            <h2>Fresh from Farm</h2>
+            <div class="product-scroll">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=200" alt="Tomato">
+                    </div>
+                    <h3>Tomato</h3>
+                    <p class="price">₹45/kg</p>
+                    <button class="btn-view" onclick="viewProductDetails('Tomato', 45)">View Details</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1518977676601-b53f82ber80?w=200" alt="Potato">
+                    </div>
+                    <h3>Potato</h3>
+                    <p class="price">₹30/kg</p>
+                    <button class="btn-view" onclick="viewProductDetails('Potato', 30)">View Details</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=200" alt="Onion">
+                    </div>
+                    <h3>Onion</h3>
+                    <p class="price">₹35/kg</p>
+                    <button class="btn-view" onclick="viewProductDetails('Onion', 35)">View Details</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1582283958-f3ab9bd6f75f?w=200" alt="Bhindi">
+                    </div>
+                    <h3>Bhindi</h3>
+                    <p class="price">₹60/kg</p>
+                    <button class="btn-view" onclick="viewProductDetails('Bhindi', 60)">View Details</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=200" alt="Cabbage">
+                    </div>
+                    <h3>Cabbage</h3>
+                    <p class="price">₹40/kg</p>
+                    <button class="btn-view" onclick="viewProductDetails('Cabbage', 40)">View Details</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1566041827250-9c0b2802d02f?w=200" alt="Green Chili">
+                    </div>
+                    <h3>Green Chili</h3>
+                    <p class="price">₹80/kg</p>
+                    <button class="btn-view" onclick="viewProductDetails('Green Chili', 80)">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vegetables Category Section -->
+    <section class="category-section">
+        <div class="container">
+            <h2>Vegetables Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Leafy Greens</h3>
+                    <p>Spinach, Lettuce, Methi</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-carrot"></i>
+                    </div>
+                    <h3>Root Vegetables</h3>
+                    <p>Carrot, Radish, Beet</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Gourd</h3>
+                    <p>Lauki, Karela, Tinda</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-peas"></i>
+                    </div>
+                    <h3>Beans</h3>
+                    <p>French Beans, Cluster</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-eggplant"></i>
+                    </div>
+                    <h3>Brinjal</h3>
+                    <p>Purple, Green, Long</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>Others</h3>
+                    <p>Mushroom, Corn</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fruits Section -->
+    <section class="fruits-section">
+        <div class="container">
+            <h2>Market</h2>
+            <div class="fruits-grid">
+                <div class="fruit-card">
+                    <div class="fruit-image">
+                        <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=200" alt="Banana">
+                    </div>
+                    <h3>Banana</h3>
+                    <p class="price">₹50/dozen</p>
+                    <button class="btn-view" onclick="viewProductDetails('Banana', 50)">View Details</button>
+                </div>
+                <div class="fruit-card">
+                    <div class="fruit-image">
+                        <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=200" alt="Mango">
+                    </div>
+                    <h3>Mango</h3>
+                    <p class="price">₹120/kg</p>
+                    <button class="btn-view" onclick="viewProductDetails('Mango', 120)">View Details</button>
+                </div>
+                <div class="fruit-card">
+                    <div class="fruit-image">
+                        <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd5?w=200" alt="Apple">
+                    </div>
+                    <h3>Apple</h3>
+                    <p class="price">₹180/kg</p>
+                    <button class="btn-view" onclick="viewProductDetails('Apple', 180)">View Details</button>
+                </div>
+                <div class="fruit-card">
+                    <div class="fruit-image">
+                        <img src="https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=200" alt="Grapes">
+                    </div>
+                    <h3>Grapes</h3>
+                    <p class="price">₹90/kg</p>
+                    <button class="btn-view" onclick="viewProductDetails('Grapes', 90)">View Details</button>
+                </div>
+                <div class="fruit-card">
+                    <div class="fruit-image">
+                        <img src="https://images.unsplash.com/photo-1549344336-a6c4f115f91c?w=200" alt="Pomegranate">
+                    </div>
+                    <h3>Pomegranate</h3>
+                    <p class="price">₹150/kg</p>
+                    <button class="btn-view" onclick="viewProductDetails('Pomegranate', 150)">View Details</button>
+                </div>
+                <div class="fruit-card">
+                    <div class="fruit-image">
+                        <img src="https://images.unsplash.com/photo-1587815073078-f636169821e3?w=200" alt="Orange">
+                    </div>
+                    <h3>Orange</h3>
+                    <p class="price">₹80/kg</p>
+                    <button class="btn-view" onclick="viewProductDetails('Orange', 80)">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Products Section -->
+    <section class="my-products-section" id="myProducts">
+        <div class="container">
+            <h2>My Products</h2>
+            <div class="products-layout">
+                <!-- Product Form -->
+                <div class="product-form-container">
+                    <h3>Add New Product</h3>
+                    <form id="productForm" onsubmit="addProduct(event)">
+                        <div class="form-group">
+                            <label for="productName">Product Name *</label>
+                            <input type="text" id="productName" placeholder="Enter product name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productType">Product Type *</label>
+                            <select id="productType" required>
+                                <option value="">Select Type</option>
+                                <option value="Fruits">Fruits</option>
+                                <option value="Grains">Grains</option>
+                                <option value="Flowers">Flowers</option>
+                                <option value="Vegetables">Vegetables</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Price (₹) *</label>
+                            <input type="number" id="productPrice" placeholder="Enter price per kg" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productQuantity">Quantity (kg) *</label>
+                            <input type="number" id="productQuantity" placeholder="Enter quantity" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endDate">End Date *</label>
+                            <input type="date" id="endDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productImages">Upload Photos</label>
+                            <input type="file" id="productImages" multiple accept="image/*">
+                        </div>
+                        <button type="submit" class="btn-primary">Submit Product</button>
+                    </form>
+                </div>
+
+                <!-- Analytics Charts -->
+                <div class="analytics-container">
+                    <h3>Sales Analytics</h3>
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <h4>Total Sales</h4>
+                            <canvas id="salesPieChart"></canvas>
+                        </div>
+                        <div class="chart-card">
+                            <h4>Monthly Sales Data</h4>
+                            <canvas id="monthlySalesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Preview Cards -->
+            <div class="product-preview-section">
+                <h3>Your Products</h3>
+                <div class="product-preview-grid" id="productPreviewGrid">
+                    <!-- Products will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-leaf"></i> ShetiMitta</h3>
+                    <p>Your trusted agricultural marketplace connecting farmers directly to consumers. Fresh produce, fair prices, sustainable farming.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#myProducts">My Products</a></li>
+                        <li><a href="#market">Directory</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                        <li><a href="ai.html">AI Assistant</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Order Status</a></li>
+                        <li><a href="#">Payment Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Farm Road, Agriculture City</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> support@shetimitta.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ShetiMitta. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Crop Management</h3>
+                    <p>Track multiple crops, optimize planting schedules, and maximize yields</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Location Based Support</h3>
+                    <p>Tailored advice for your specific region and climate conditions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-leaf"></i> ShetiMitta</h3>
+                    <p>Your trusted agricultural marketplace connecting farmers directly to consumers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#myProducts">My Products</a></li>
+                        <li><a href="#market">Directory</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                        <li><a href="ai.html">AI Assistant</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Farm Road, Agriculture City</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> support@shetimitta.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ShetiMitta. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

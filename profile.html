@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - ShetiMitta</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50' font-size='50'>🌾</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo" onclick="navigateTo('index.html')">
+                <i class="fas fa-leaf"></i> ShetiMitta
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" data-page="home">Home</a></li>
+                <li><a href="#myProducts" data-page="products">My Products</a></li>
+                <li><a href="index.html#market">Directory</a></li>
+                <li><a href="diary.html" data-page="diary">Diary</a></li>
+                <li><a href="ai.html" data-page="ai">AI Assistant</a></li>
+                <li><a href="about.html" data-page="about">About</a></li>
+                <li class="nav-right">
+                    <div class="notification-icon" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                </li>
+                <li class="nav-right">
+                    <div class="profile-icon" onclick="navigateTo('profile.html')" style="cursor: pointer;">
+                        <i class="fas fa-user-circle" style="font-size: 1.8rem; color: white;"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Profile Page -->
+    <section class="profile-page">
+        <div class="container">
+            <div class="profile-header-section">
+                <div class="profile-cover"></div>
+                <div class="profile-info-section">
+                    <div class="profile-avatar-large">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-details">
+                        <h1 id="profileName">Farmer Name</h1>
+                        <p id="profileEmail">farmer@email.com</p>
+                        <span class="profile-badge"><i class="fas fa-check-circle"></i> Verified Farmer</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-box"></i>
+                        <h3 id="totalProducts">0</h3>
+                        <p>Total Products</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3 id="totalSales">0</h3>
+                        <p>Total Sales</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <h3>4.8</h3>
+                        <p>Rating</p>
+                    </div>
+                </div>
+                
+                <div class="profile-sections">
+                    <div class="profile-section-card">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Full Name</label>
+                                <p id="fullName">John Doe</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Email</label>
+                                <p id="userEmail">john@farm.com</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Phone</label>
+                                <p>+91 98765 43210</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Location</label>
+                                <p>Maharashtra, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section-card">
+                        <h3><i class="fas fa-box"></i> My Products</h3>
+                        <div class="profile-products-grid" id="profileProductsGrid">
+                            <p class="no-products">No products added yet.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section-card">
+                        <h3><i class="fas fa-cog"></i> Account Settings</h3>
+                        <div class="settings-list">
+                            <a href="#" class="settings-item">
+                                <i class="fas fa-edit"></i>
+                                <span>Edit Profile</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                            <a href="#" class="settings-item">
+                                <i class="fas fa-bell"></i>
+                                <span>Notifications</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                            <a href="#" class="settings-item">
+                                <i class="fas fa-lock"></i>
+                                <span>Change Password</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                            <a href="#" class="settings-item" onclick="handleLogout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        // Load profile data
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProfileData();
+        });
+        
+        function loadProfileData() {
+            // Get user data from localStorage
+            const userName = localStorage.getItem('userName') || 'Farmer';
+            const userEmail = localStorage.getItem('userEmail') || 'user@email.com';
+            
+            document.getElementById('profileName').textContent = userName.charAt(0).toUpperCase() + userName.slice(1);
+            document.getElementById('profileEmail').textContent = userEmail;
+            document.getElementById('fullName').textContent = userName.charAt(0).toUpperCase() + userName.slice(1);
+            document.getElementById('userEmail').textContent = userEmail;
+            
+            // Load products
+            const products = JSON.parse(localStorage.getItem('shetiProducts')) || [];
+            document.getElementById('totalProducts').textContent = products.length;
+            document.getElementById('totalSales').textContent = products.length * 5; // Mock sales
+            
+            // Display products
+            const grid = document.getElementById('profileProductsGrid');
+            if (products.length > 0) {
+                grid.innerHTML = '';
+                products.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = 'profile-product-card';
+                    card.innerHTML = `
+                        <div class="product-info">
+                            <h4>${product.name}</h4>
+                            <span class="product-type">${product.type}</span>
+                        </div>
+                        <div class="product-price">₹${product.price}/kg</div>
+                        <div class="product-qty">${product.quantity} kg</div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

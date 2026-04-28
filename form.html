@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - ShetiMitta</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50' font-size='50'>🌾</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo" onclick="navigateTo('index.html')">
+                <i class="fas fa-leaf"></i> ShetiMitta
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" data-page="home">Home</a></li>
+                <li><a href="#myProducts" data-page="products">My Products</a></li>
+                <li><a href="index.html#market">Directory</a></li>
+                <li><a href="diary.html" data-page="diary">Diary</a></li>
+                <li><a href="ai.html" data-page="ai">AI Assistant</a></li>
+                <li><a href="about.html" data-page="about">About</a></li>
+                <li class="nav-right">
+                    <div class="notification-icon" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                </li>
+                <li class="nav-right">
+                    <div class="auth-buttons" id="authSection">
+                        <a href="login.html" class="btn-login">Login</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Form Hero -->
+    <section class="form-hero">
+        <div class="container">
+            <h1>Get Started</h1>
+            <p>Join ShetiMitta and transform your farming business</p>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-main">
+        <div class="container">
+            <div class="form-container">
+                <h2>Farmer Registration</h2>
+                <form id="registrationForm" onsubmit="handleRegistration(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" placeholder="Enter your first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" placeholder="Enter your last name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="farmName">Farm Name</label>
+                        <input type="text" id="farmName" placeholder="Enter your farm name">
+                    </div>
+                    <div class="form-group">
+                        <label for="farmLocation">Farm Location</label>
+                        <input type="text" id="farmLocation" placeholder="Enter your farm location">
+                    </div>
+                    <div class="form-group">
+                        <label for="farmSize">Farm Size (acres)</label>
+                        <input type="number" id="farmSize" placeholder="Enter farm size">
+                    </div>
+                    <div class="form-group">
+                        <label for="primaryCrops">Primary Crops</label>
+                        <input type="text" id="primaryCrops" placeholder="e.g., Wheat, Rice, Vegetables">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Additional Message</label>
+                        <textarea id="message" placeholder="Tell us more about your farm..." rows="4"></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Submit Registration
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-leaf"></i> ShetiMitta</h3>
+                    <p>Your trusted agricultural marketplace connecting farmers directly to consumers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                        <li><a href="ai.html">AI Assistant</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Farm Road</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> support@shetimitta.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ShetiMitta. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function handleRegistration(event) {
+            event.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            
+            if (firstName && lastName && email) {
+                alert(`Thank you ${firstName}! Your registration has been submitted successfully. We will contact you soon.`);
+                document.getElementById('registrationForm').reset();
+            }
+        }
+    </script>
+</body>
+</html>
+  <input type="name" name="name" placeholder="First Name">
+   <input type="name" name="name" placeholder="middle Name">
+   <input type="name" name="name" placeholder="last Name">
+  <br>
+  <br>
+  Gender
+  <br>
+  <br>
+  <div id="re">
+  <input type="radio" name="gender">Male
+    <input type="radio" name="gender">Female
+    <input type="radio" name="gender">Others</div>
+  <br>
+  <br>
+  Birth date<br>
+  <br>
+   <input type="date" name="date" placeholder="Enter your birth date">
+  <br>
+  <br>
+  Address
+  <br>
+  <input type="text" name="text" placeholder="Enter your Address">
+  <br>
+  <br>
+    Mobile number
+    <br>
+    <br>
+    <input type="text" name="maobile number" placeholder="Enter your mobile no.">
+    <br>
+    <br>
+  Qulification<br>
+
+  <select>
+    <option>--Quilificatio--</option>
+    <option>SSC</option>
+    <option>HSC</option>
+  </select>
+  <br>
+  <br>
+  Select course
+  <br>
+  <br>
+ <select>
+    <option>--Course--</option>
+    <option>BBA</option>
+    <option>BCA</option>
+    <option>B.Sc</option>
+    <option>B.com</option>
+  </select>
+  <br>
+  <br>
+    Aaddhar number
+    <br>
+    <br>
+    <input type="text" name="Aaddhar number" placeholder="Enter your addhar no.">
+    <br>
+    <br>
+    Email address
+    <br>
+    <br>
+    <input type="email" name="Email address" placeholder="Enter your email">
+    <br>
+    <br>
+    <br>
+    Category
+    <br>
+    <br>
+    <select>
+      <option>--Category--</option>
+      <option>Open/Genral</option>
+      <option>OBC</option>
+      <option>SBC</option>
+      <optin>NBC</optin>
+      <option>SC/ST</option>
+    </select>
+ <center>
+<button class="v">Submit</button>
+</center>
+  </fieldset>
+</form>
+</body>
+</html>

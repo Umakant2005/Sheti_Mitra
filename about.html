@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - ShetiMitta</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50' font-size='50'>🌾</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo" onclick="navigateTo('index.html')">
+                <i class="fas fa-leaf"></i> ShetiMitta
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" data-page="home">Home</a></li>
+                <li><a href="#myProducts" data-page="products">My Products</a></li>
+                <li><a href="index.html#market">Directory</a></li>
+                <li><a href="diary.html" data-page="diary">Diary</a></li>
+                <li><a href="ai.html" data-page="ai">AI Assistant</a></li>
+                <li><a href="about.html" class="active" data-page="about">About</a></li>
+                <li class="nav-right">
+                    <div class="notification-icon" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                </li>
+                <li class="nav-right">
+                    <div class="auth-buttons" id="authSection">
+                        <a href="login.html" class="btn-login">Login</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About ShetiMitta</h1>
+            <p>Empowering Farmers Through Technology</p>
+        </div>
+    </section>
+
+    <!-- About Main -->
+    <section class="about-main">
+        <div class="container">
+            <!-- About Our Webpage -->
+            <div class="about-section">
+                <h2>About Our Webpage</h2>
+                <p>ShetiMitta is a comprehensive agricultural marketplace designed to bridge the gap between farmers and consumers. Our platform provides a seamless experience for buying and selling fresh produce, while also offering valuable tools for farm management including diary tracking and AI-powered assistance.</p>
+                
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3>Marketplace</h3>
+                        <p>Direct farmer-to-consumer platform for fresh produce at fair prices</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Farm Diary</h3>
+                        <p>Track daily activities, weather conditions, and farming notes</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI Assistant</h3>
+                        <p>Get instant answers to farming questions and expert guidance</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Analytics</h3>
+                        <p>Track sales performance with interactive charts and insights</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vision & Mission -->
+            <div class="about-section">
+                <h2>Vision & Goal</h2>
+                <div class="vision-mission">
+                    <div class="vision-card">
+                        <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                        <p>To revolutionize Indian agriculture by creating a technology-driven ecosystem that empowers farmers, ensures fair prices for their produce, and provides consumers with access to fresh, quality agricultural products. We envision a future where every farmer has digital access to markets, knowledge, and resources.</p>
+                    </div>
+                    <div class="mission-card">
+                        <h3><i class="fas fa-bullseye"></i> Our Goal</h3>
+                        <p>Our primary goal is to increase farmer incomes by eliminating middlemen and connecting them directly with consumers. We aim to: provide a user-friendly digital platform, offer AI-powered farming guidance, enable product listing and sales management, and build a sustainable agricultural community.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Choose Us -->
+            <div class="about-section">
+                <h2>Why Choose ShetiMitta?</h2>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h3>Fair Pricing</h3>
+                        <p>Get the best prices for your produce with direct farmer-to-consumer model</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Easy Delivery</h3>
+                        <p>Streamlined logistics ensuring fresh produce reaches customers quickly</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Secure Platform</h3>
+                        <p>Safe and secure transactions with verified buyer and seller profiles</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-card-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>24/7 Support</h3>
+                        <p>Round-the-clock customer support for all your queries and concerns</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-leaf"></i> ShetiMitta</h3>
+                    <p>Your trusted agricultural marketplace connecting farmers directly to consumers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                        <li><a href="ai.html">AI Assistant</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Farm Road</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> support@shetimitta.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ShetiMitta. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+            <div class="about-section">
+                <h2>Our Vision</h2>
+                <p>We envision a future where every farmer, regardless of their size or resources, has access to world-class agricultural technology and expertise. Through Sheti Mitra, we're committed to transforming traditional farming into a sustainable, profitable, and tech-enabled industry that feeds our nation while preserving the environment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🌾 Sheti Mitra</h4>
+                    <p>Empowering farmers with smart agricultural solutions</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="diary.html">Diary</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <p>Facebook | Twitter | Instagram</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sheti Mitra. All rights reserved. | Revolutionizing Agriculture with Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
